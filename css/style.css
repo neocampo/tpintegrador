@@ -1,0 +1,30 @@
+.navbar-brand img
+{width: 100px;}
+
+#boton_verde
+{color: #25a342}
+
+
+.carousel-item
+{ opacity: .9; 
+}
+
+.carousel-item img
+{  filter: brightness(50%);}
+
+#botonenviar
+{background-color: #33e45c;}
+
+#footer
+{margin:0;
+padding:0;
+background-color: #0b4063;
+}
+
+#footerli
+{   
+    color:white;
+    text-align: center;
+    font-size:smaller;
+overflow-wrap: normal;
+width: 6rem;}
