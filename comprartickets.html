@@ -4,6 +4,7 @@
         <title></title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        
         <link href="css/style.css" rel="stylesheet">
         <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
@@ -105,17 +106,20 @@
             </div>
        
         <div class="row justify-content-center d-xl-flex">
-          <div class="col-4 pe-1">
-            <input type="text" class="form-control" placeholder="Nombre">
+          <div class="col-4 pe-1">          
+            <input type="text" class="form-control" placeholder="Nombre" id="nombre">
+            <div class="invalid-feedback" id="nonombre"></div>
           </div>
           <div class="col-4 ps-1">
-            <input type="text" class="form-control" placeholder="Apellido">
+            <input type="text" class="form-control" placeholder="Apellido" id="apellido">
+            <div class="invalid-feedback" id="noapellido"></div>
         </div>
                               
         </div>
         <div class="row justify-content-center d-xl-flex text-start">
         <div class="col-8 mx-0 my-2">
-            <input type="text" class="form-control" placeholder="Correo">
+            <input type="text" class="form-control" placeholder="Correo" id="mail">
+            <div class="invalid-feedback" id="nomail"></div>
           </div>
         </div>
 
@@ -123,28 +127,31 @@
             <div class="col-4 pe-1 mx-0 my-2">
               <label for="cantidad">Cantidad</label>
               <input type="text" class="form-control" placeholder="Cantidad" id="cantidad">
+              <div class="invalid-feedback" id="nocantidad"></div>
             </div>
             <div class="form-group col-4 ps-1 mx-0 my-2">
                 <label for="categoria">Categoría</label>
                 <select class="form-control dropdown-toggle" id="categoria">
-                  <option selected>-- Seleccione --</option>
-                  <option>Sin Categoría</option>
-                  <option>Estudiante</option>
-                  <option>Trainee</option>
-                  <option>Junior</option>                  
+                  <option selected id="sincateg">Sin Categoría</option>                
+                  <option id="estudiante">Estudiante</option>
+                  <option id="trainee">Trainee</option>
+                  <option id="junior">Junior</option>                  
                 </select>
           </div>
 
+          <div class="col-lg-8 mt-lg-4 mb-lg-5 pt-3 pb-2 alert alert-primary" id="total"> 
+            <p id="total">Total a Pagar: $ </p>  
+          </div>
 
-        <div class="row justify-content-center d-xl-flex">
-         <div class="col-lg-4 m-0 ps-1 pe-1">   
-           <button type="button" id="botonenviar" class="btn btn-success btn-lg col-12 btn.c">Borrar</button>
+
+        <div class="row justify-content-center col-lg-8 d-xl-flex">
+         <div class="col-lg-6 m-0 ps-1 pe-1">   
+           <button type="button" id="botonborrar" class="btn btn-success btn-lg col-12 btn.c">Borrar</button>
          </div>
-         <div class="col-lg-4 m-0 ps-1 pe-1">   
-            <button type="button" id="botonenviar" class="btn btn-success btn-lg col-12 btn.c">Resumen</button>
+         <div class="col-lg-6 m-0 ps-1 pe-1">   
+            <button type="button" id="botonresumen" class="btn btn-success btn-lg col-12 btn.c" >Resumen</button>
           </div>
         </div>
-      </div>
 
         </main>
 
@@ -195,6 +202,7 @@
   
   
   
+      <script src="js/scripts.js"></script>
       <!-- JavaScript Bundle with Popper -->
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
       </body>
