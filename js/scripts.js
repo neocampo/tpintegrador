@@ -111,7 +111,7 @@ function limpiarElementos()
     mail.classList.remove("is-invalid");
     cantidad.classList.remove("is-invalid");
     categoria.classList.remove("is-invalid");
-    document.getElementById("total").innerHTML="";
+    document.getElementById("total").innerHTML="Total a Pagar: $";
 
 }
 
@@ -126,9 +126,10 @@ function borrarInputs()
     //     inputs[i].value=""
     // }
         
-    for(const item of inputs){
+    for(const item of inputs){        
         item.value=""
     }
+    document.getElementById("total").innerHTML="Total a Pagar: $"
 }
 
 
