@@ -3,102 +3,132 @@ const precio=200
 
 //defino valor de descuentos
 
-var sincateg=0
-var estudiante=80;
-var trainee=50;
-var junior=15;
+let sincateg=0
+let estudiante=80;
+let trainee=50;
+let junior=15;
 
 //capturo datos de los imputs
 
-var nombre=document.getElementById("nombre");
-var apellido=document.getElementById("apellido");
-var mail=document.getElementById("mail");
-var cantidad=document.getElementById("cantidad");
-var categoria=document.getElementById("categoria");
+let nombre=document.getElementById("nombre");
+let apellido=document.getElementById("apellido");
+let mail=document.getElementById("mail");
+let cantidad=document.getElementById("cantidad");
+let categoria=document.getElementById("categoria");
+let sinselec=document.getElementById("sinselec");
 
-var x=document.getElementById("botonresumen");
+let x=document.getElementById("botonresumen");
 x.addEventListener("click",resumen);
 
 
 function resumen()
-{        
+{     
+    limpiarElementos()
+    let puedoCalcular = true
+    
     if (nombre.value==="")
     {
-        nombre.className+=" is-invalid";
-        document.getElementById("nonombre").innerHTML+="Escriba su Nombre";
-    }
-    else
-    {        
-        nombre.className = nombre.className.replace(" is-invalid","")        
+        nombre.classList.add("is-invalid");    
+        document.getElementById("nonombre").innerHTML="Escriba su Nombre";
+        puedoCalcular = false
     }
 
     
     if (apellido.value==="")
     {
-        apellido.className+=" is-invalid";
-        document.getElementById("noapellido").innerHTML+="Escriba su Apellido";
-    }
-    else
-    {        
-        apellido.className = apellido.className.replace(" is-invalid","")        
+        apellido.classList.add("is-invalid");
+        document.getElementById("noapellido").innerHTML="Escriba su Apellido";
+        puedoCalcular = false
     }
 
     if (mail.value==="")
     {
-        mail.className+=" is-invalid";
-        document.getElementById("nomail").innerHTML+="Escriba su Correo";
+        mail.classList.add("is-invalid");
+        document.getElementById("nomail").innerHTML="Escriba su Correo";
+        puedoCalcular = false
     }
-    else
-    {        
-        mail.className = mail.className.replace(" is-invalid","")        
-    }
-
-    if (cantidad.value==="")
+    else if (!(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail.value)))
     {
-        cantidad.className+=" is-invalid";
-        document.getElementById("nocantidad").innerHTML+="Coloque la Cantidad deseada";
-    }
-    else
-    {        
-        cantidad.className = cantidad.className.replace(" is-invalid","")        
+        mail.classList.add("is-invalid");
+        document.getElementById("nomail").innerHTML="Escriba un Correo Válido";
+        puedoCalcular = false
+
     }
 
-
-    if(nombre.value!=="" && apellido.value!=="" && mail.value!=="" && mail.value!=="" && cantidad.value!=="")
+   
+    if ((!Number.isInteger(+cantidad.value)) || (cantidad.value<=0))
     {
-        var lista=document.getElementById('categoria');
-        var seleccion=lista.options[lista.selectedIndex].id;
-        
-        console.log("valor de cat: "+seleccion)
-        console.log("valor de stringcat: "+String(seleccion))
+        cantidad.classList.add("is-invalid");
+        document.getElementById("nocantidad").innerHTML="Coloque una Cantidad válida";
+        puedoCalcular = false
+    }
+   
+    if (categoria.value==="-Sin Selección-")
+    {
+        categoria.classList.add("is-invalid");
+        document.getElementById("nocateg").innerHTML="Seleccione su Categoría";
+        puedoCalcular = false
+    }
+   
+      if(puedoCalcular)
+    {
+        let lista=document.getElementById('categoria');
+        let seleccion=lista.options[lista.selectedIndex].id;
 
+        let preciototal=precio*~~cantidad.value
+                
         document.getElementById("total").innerHTML="Total a Pagar: $ "
 
         switch(seleccion)
        
          {
             case "sincateg":
-                document.getElementById("total").innerHTML+=precio;
+                document.getElementById("total").innerHTML+=preciototal;
                 break;
 
             case "estudiante":
-                document.getElementById("total").innerHTML+=precio-(precio*estudiante/100);
+                document.getElementById("total").innerHTML+=preciototal-(preciototal*estudiante/100);
                 break;
 
             case "trainee":
-                document.getElementById("total").innerHTML+=precio-(precio*trainee/100);
+                document.getElementById("total").innerHTML+=preciototal-(preciototal*trainee/100);
                 break;
 
             case "junior":
-                document.getElementById("total").innerHTML+=precio-(precio*junior/100);
+                document.getElementById("total").innerHTML+=preciototal-(preciototal*junior/100);
                 break;
          }
          
     }
 
-    else
-    {
-        document.getElementById("total").innerHTML+="Bu";
-    }
+   
+}
+
+function limpiarElementos()
+{
+    nombre.classList.remove("is-invalid");
+    apellido.classList.remove("is-invalid");
+    mail.classList.remove("is-invalid");
+    cantidad.classList.remove("is-invalid");
+    categoria.classList.remove("is-invalid");
+    document.getElementById("total").innerHTML="";
 
 }
+
+let y=document.getElementById("botonborrar");
+y.addEventListener("click",borrarInputs);
+
+function borrarInputs()
+{
+    let inputs=document.getElementsByClassName("borrar");
+
+    // for (let i=0; i<inputs.length; i++){
+    //     inputs[i].value=""
+    // }
+        
+    for(const item of inputs){
+        item.value=""
+    }
+}
+
+
